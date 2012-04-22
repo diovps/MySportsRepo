@@ -7,18 +7,46 @@ var express = require('express')
   , routes = require('./routes');
 
 var app = module.exports = express.createServer();
-var RedisStore = require('connect-redis')(express);
+//var RedisStore = require('connect-redis')(express);
 var mongoose = require('mongoose');
 var Game = require('./models/game.js');
-mongoose.connect('mongodb://localhost/game_db');
+
+if(process.env.VCAP_SERVICES){
+  var env = JSON.parse(process.env.VCAP_SERVICES);
+  var mongo = env['mongodb-1.8'][0]['credentials'];
+}
+else{
+  var mongo = {
+    "hostname":"localhost",
+    "port":3000,
+    "db":"game_db"
+  }
+}
+
+var generate_mongo_url = function(obj){
+  obj.hostname = (obj.hostname || 'localhost');
+  obj.port = (obj.port || 3000);
+  obj.db = (obj.db || 'game_db');
+
+  if(obj.username && obj.password){
+    return "mongodb://" + obj.username + ":" + obj.password + "@" + obj.hostname + ":" + obj.port + "/" + obj.db;
+  }
+  else{
+    return "mongodb://" + obj.hostname + "/" + obj.db;
+  }
+}
+
+var mongourl = generate_mongo_url(mongo);
+
+mongoose.connect(String(mongourl));
 // Configuration
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(express.bodyParser());
-  app.use(express.cookieParser());
-  app.use(express.session({secret : 'supersecretthing'}, {store: new RedisStore()}));
+  //app.use(express.cookieParser());
+  //app.use(express.session({secret : 'supersecretthing'}, {store: new RedisStore()}));
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
@@ -42,10 +70,8 @@ app.post('/',function(req,res){
 	console.log("Number of Players: " + req.body.game["numplayers"]);
 	console.log("Time: " + req.body.game["time"]);
 	console.log("Address: " + req.body.game["address"]);
-	console.log("Attitude: " + req.body.game["attitude"]);
-	console.log("Notes: " + req.body.game["notes"]);
 	
-	var u = new Game({type : req.body.game['type'], numplayers: req.body.game["numplayers"],time : req.body.game["time"], address : req.body.game["address"], attitude : req.body.game["attitude"], notes: req.body.game["notes"]});
+	var u = new Game({type : req.body.game['type'], numplayers: req.body.game["numplayers"],time : req.body.game["time"], address : req.body.game["address"]});
 	
 	u.save(function(err) {
 	
@@ -60,7 +86,8 @@ app.post('/',function(req,res){
 // Routes
 
 app.get('/', routes.index);
+var port = (process.env.VMC_APP_PORT || 3000);
 
-app.listen(3000);
+app.listen(port);
 
-console.log("Duper Super listening on port %d in %s mode", app.address().port, app.settings.env);
+//console.log("Duper Super listening on port %d in %s mode", app.address().port, app.settings.env);

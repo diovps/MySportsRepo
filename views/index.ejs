@@ -1,32 +1,24 @@
-
+<!--EVENT TILES-->
 		<div class="screen" id="screen_primary">
-			<div class="event_container">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. In libero magna, pulvinar sit amet commodo nec, consectetur vitae elit. Proin iaculis purus at neque iaculis porttitor. Suspendisse quam ligula, porta ut condimentum non, consectetur a lectus. Aenean eu arcu quam. Curabitur nec justo lorem, id aliquet diam. Cras nunc diam, convallis id venenatis at, tristique ut dolor. Curabitur ac tincidunt dolor. Aliquam volutpat molestie ligula, quis rhoncus elit convallis sit amet.
-			</div>
+			<div class="event_container"></div>
 		</div>
 	<!--SECONDARY SCREEN (MENU, CREATE and POST EVENTS)-->
 		<div class="screen" id="screen_secondary">
 
 			<div id="subscreen_post">
 				<div class="i_f_container i_f_container_2">
-					<form method="post" action="/" id="firstInfo">
-					<div class="input_field position1">
-						<input type="text" id="input_gametype" placeholder="Type of game..." name="game[type]"><br>
-						<input type="text" id="input_players" placeholder="# of Players..." name="game[numplayers]"><br>
-						 <div class="btn btn_little next_position">next</div>	
-				     </div>
+				     <form method="post" action="/" id="firstInfo">	
+				     <div class="input_field position1">
+						<input id="input_gametype" placeholder="Type of game..." name="game[type]"><br>
+						<input id="input_players" placeholder="# of Players..." name="game[numplayers]"><br>
+						<div class="btn btn_little next_position">next</div>
+					</div>
 					<div class="input_field position2">
 						<input id="input_time" placeholder="Time..." name="game[time]"><br>
 						<input id="input_address" placeholder="Location..." name="game[address]"><br>
-						<div class="btn btn_little next_position">next</div>
-						<div class="btn btn_little back_position">back</div>
-					</div>
-					<div class="input_field position3">
-						<input id="input_attitude" placeholder="Attitude (e.g. competitive)" name="game[attitude]"><br>
-						<textarea id="input_notes" placeholder="Notes..." name="game[notes]"></textarea>
 						<div class="btn btn_little submit">post</div>
 						<div class="btn btn_little back_position">back</div>
-				</form>
+			</form>
 					</div>
 				</div>
 			</div>
@@ -40,13 +32,17 @@
 					</div>
 					<div class="input_field position2">
 						<div id="findby_location" class="option">
-							<%- partial('partials/location', {result:result}) %>
+							<%- partial('partials/location', {result: result}) %>							
+
+							<div class="btn btn_little back_position">back</div>
 						</div>
 						<div id="findby_gametype" class="option">
-							by gametype
+							<%- partial('partials/soccer', {result: result}) %>
+						<div class="btn btn_little back_position">back</div>
 						</div>
 						<div id="findby_players" class="option">
-							by players
+							<%- partial('partials/players', {result: result}) %>
+							<div class="btn btn_little back_position">back</div>
 						</div>
 					</div>
 				</div>
@@ -62,12 +58,15 @@
 					<div class="input_field position2">
 						<div id="settings_screen" class="option">
 							settings
+							<div class="btn btn_little back_position">back</div>
 						</div>
 						<div id="about_screen" class="option">
 							about
+							<div class="btn btn_little back_position">back</div>
 						</div>
 						<div id="contact_screen" class="option">
 							contact
+							<div class="btn btn_little back_position">back</div>
 						</div>
 					</div>
 				</div>
