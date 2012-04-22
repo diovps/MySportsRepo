@@ -1,0 +1,6 @@
+<% var locationFilter = function(x) { %>
+    <% return x["type"] === "soccer"; %>
+<% } %>
+
+<% var locationArray = result.filter(locationFilter) %>
+<%= locationArray.length %>	

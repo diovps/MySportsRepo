@@ -1,0 +1,88 @@
+
+		<div class="screen" id="screen_primary">
+			<div class="event_container">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. In libero magna, pulvinar sit amet commodo nec, consectetur vitae elit. Proin iaculis purus at neque iaculis porttitor. Suspendisse quam ligula, porta ut condimentum non, consectetur a lectus. Aenean eu arcu quam. Curabitur nec justo lorem, id aliquet diam. Cras nunc diam, convallis id venenatis at, tristique ut dolor. Curabitur ac tincidunt dolor. Aliquam volutpat molestie ligula, quis rhoncus elit convallis sit amet.
+			</div>
+		</div>
+	<!--SECONDARY SCREEN (MENU, CREATE and POST EVENTS)-->
+		<div class="screen" id="screen_secondary">
+
+			<div id="subscreen_post">
+				<div class="i_f_container i_f_container_2">
+					<form method="post" action="/" id="firstInfo">
+					<div class="input_field position1">
+						<input type="text" id="input_gametype" placeholder="Type of game..." name="game[type]"><br>
+						<input type="text" id="input_players" placeholder="# of Players..." name="game[numplayers]"><br>
+						 <div class="btn btn_little next_position">next</div>	
+				     </div>
+					<div class="input_field position2">
+						<input id="input_time" placeholder="Time..." name="game[time]"><br>
+						<input id="input_address" placeholder="Location..." name="game[address]"><br>
+						<div class="btn btn_little next_position">next</div>
+						<div class="btn btn_little back_position">back</div>
+					</div>
+					<div class="input_field position3">
+						<input id="input_attitude" placeholder="Attitude (e.g. competitive)" name="game[attitude]"><br>
+						<textarea id="input_notes" placeholder="Notes..." name="game[notes]"></textarea>
+						<div class="btn btn_little submit">post</div>
+						<div class="btn btn_little back_position">back</div>
+				</form>
+					</div>
+				</div>
+			</div>
+
+			<div id="subscreen_find">
+				<div class="i_f_container i_f_container_3">
+					<div class="input_field position1">
+						<div id="findby_location_btn" class="btn btn_big next_position">by location</div>
+						<div id="findby_gametype_btn" class="btn btn_big next_position">by game type</div>
+						<div id="findby_players_btn" class="btn btn_big next_position">by players</div>
+					</div>
+					<div class="input_field position2">
+						<div id="findby_location" class="option">
+							<%- partial('partials/location', {result:result}) %>
+						</div>
+						<div id="findby_gametype" class="option">
+							by gametype
+						</div>
+						<div id="findby_players" class="option">
+							by players
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="subscreen_menu">
+				<div class="i_f_container i_f_container_3">
+					<div class="input_field position1">
+						<div id="settings_btn" class="btn btn_big next_position">settings</div>
+						<div id="about_btn" class="btn btn_big next_position">about us</div>
+						<div id="contact_btn" class="btn btn_big next_position">contact us</div>
+					</div>
+					<div class="input_field position2">
+						<div id="settings_screen" class="option">
+							settings
+						</div>
+						<div id="about_screen" class="option">
+							about
+						</div>
+						<div id="contact_screen" class="option">
+							contact
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!--NAVIGATION-->
+		<div class="menu_bar_container">
+			<div class="menu_bar">
+				<h1>title</h1>
+				<div id="menu_options">
+					<p id="post_event">post game</p>
+					<p id="find_event">find game</p>
+					<p id="menu">menu</p>
+				</div>
+				<p id="back">back</p>
+			</div>
+		</div>
+
