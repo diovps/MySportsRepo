@@ -1,7 +1,7 @@
 <!--EVENT TILES-->
 		<div class="screen" id="screen_primary">
 			<div class="event_container">
-				<%- partial('partials/main', {result:result}) %>
+				<%- partial('partials/main', {result:result,ObjectIds: ObjectIds}) %>
 			</div>
 		</div>
 	<!--SECONDARY SCREEN (MENU, CREATE and POST EVENTS)-->
@@ -85,7 +85,7 @@
 	<!--NAVIGATION-->
 		<div class="menu_bar_container">
 			<div class="menu_bar">
-				<h1>title</h1>
+				<h1 id="title1">title</h1>
 				<div id="menu_options">
 					<p id="post_event">post game</p>
 					<p id="find_event">find game</p>

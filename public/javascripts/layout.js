@@ -145,6 +145,44 @@ function main(){
 };
 
 $(document).ready(function(){
-        horzontalScrolling();
+          
+	var socket = io.connect("http://localhost");
+	 
+	$("#Object0").click(function(){
+	     $("#numslot0").text(Number($("#numslot0").text())+1);
+	     socket.emit("done",{id: 0,slots: Number($("#numslot0").text())});
+	 });
+
+	$("#Object1").click(function(){
+             $("#numslot1").text(Number($("#numslot1").text())+1);
+	     socket.emit("done",{id: 1,slots: Number($("#numslot1").text())});
+         }); 	 
+
+	$("#Object2").click(function(){
+             $("#numslot2").text(Number($("#numslot2").text())+1);
+             socket.emit("done",{id: 2,slots: Number($("#numslot2").text())});
+         }); 
+
+	$("#Object3").click(function(){
+             $("#numslot3").text(Number($("#numslot3").text())+1);
+	     socket.emit("done",{id: 3, slots: Number($("#numslot3").text())});
+         }); 
+
+	$("#Object4").click(function(){
+             $("#numslot4").text(Number($("#numslot4").text())+1);
+	     socket.emit("done",{id: 4,slots: Number($("#numslot4").text())});
+         }); 
+
+	$("#Object5").click(function(){
+             $("#numslot5").text(Number($("#numslot5").text())+1);
+	     socket.emit("done",{id: 5, slots: Number($("#numslot5").text())});
+         }); 
+
+	$("#Object6").click(function(){
+             $("#numslot6").text(Number($("#numslot6").text())+1);
+	     socket.emit("done",{id: 6,slots: Number($("#numslot6").text())});
+         });
+
+	horzontalScrolling();
 	main();
 });

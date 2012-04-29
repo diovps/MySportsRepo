@@ -14,12 +14,11 @@
 	     <div class="event_inside event_bottom">	
 		  <p><%= entry["type"] %> </p>
           	  <p><%= entry["time"] %> </p>
-           	  <p><%= entry["numslots"] %>/<%= entry["numplayers"] %> </p>
+           	  <p><span id="numslot<%=count %>"><%= entry["numslots"] %></span>/<%= entry["numplayers"] %> </p>
                   <p><%= entry["address"] %> </p>
 	   	  <p class="join" id="Object<%= count %>">join</p>
 	    </div>
 	 </div>
-	 <% ObjectIds[count] = entry["_id"] %>
 	 <% count++ %>
      <% }) %>
 <% } %>

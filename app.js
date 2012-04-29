@@ -11,7 +11,6 @@ var app = module.exports = express.createServer();
 var mongoose = require('mongoose');
 var Game = require('./models/game.js');
 
-ObjectIds = new Array();
 
 if(process.env.VCAP_SERVICES){
   var env = JSON.parse(process.env.VCAP_SERVICES);
@@ -89,4 +88,48 @@ var port = (process.env.VMC_APP_PORT || 3000);
 
 app.listen(port);
 
-//console.log("Duper Super listening on port %d in %s mode", app.address().port, app.settings.env);
+var io = require("socket.io").listen(app);
+
+if(process.env.VMC_APP_PORT) {
+    io.set('transports', [
+	 'flashsocket',
+	 'htmlfile',
+	 'xhr-polling',
+	 'jsonp-polling'
+     ]);
+}
+
+
+   var sortTime = function(a,b){
+        return a["numplayers"] - b["numplayers"];
+   }
+   
+   var ObjectIds = new Array();
+
+   Game.find({}, function(err,result){
+        if(!err)
+            var playerArray = result.sort(sortTime);
+            var count = 0;
+
+            playerArray.forEach(function(element){
+                 ObjectIds[count] = element["_id"];
+                 count++;
+            });
+    });
+
+io.sockets.on('connection',function(socket){
+	socket.emit("sayhello", {data: ObjectIds});
+	socket.on("done",function(data){
+	      console.log(data.slots);
+	      Game.find({"_id": ObjectIds[data.id]},function(err,result){
+	              if(!(result[0]["numslots"] >= result[0]["numplayers"])){
+			    result[0]["numslots"]=data.slots;
+			    result[0].save();	   
+		      }
+	      }); 
+	}); 
+});
+
+
+
+
