@@ -1,0 +1,27 @@
+<% var sortTime = function(a,b) { %>
+    <% return a["numplayers"] - b["numplayers"] %>
+<% } %>
+
+<% var count = 0 %>
+
+<% var timedArray = result.sort(sortTime) %>
+<% if(timedArray.length===0){ %>
+<% }else{ %>
+    <% timedArray.forEach(function(entry){ %>
+        <div class="event yellow">
+          <div class="event_inside event_top">
+	     <img src="images/circle.png"></div>
+	     <div class="event_inside event_bottom">	
+		  <p><%= entry["type"] %> </p>
+          	  <p><%= entry["time"] %> </p>
+           	  <p><%= entry["numslots"] %>/<%= entry["numplayers"] %> </p>
+                  <p><%= entry["address"] %> </p>
+	   	  <p class="join" id="Object<%= count %>">join</p>
+	    </div>
+	 </div>
+	 <% ObjectIds[count] = entry["_id"] %>
+	 <% count++ %>
+     <% }) %>
+<% } %>
+
+

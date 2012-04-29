@@ -18,7 +18,17 @@
 		width: 15em;
 		margin: 0.25em;
 		font-size: 16pt;
-		padding-left: .5em;
+		padding-left: 0.5em;
+		color: rgb(150, 150, 150);
+	}
+
+	select 	{
+		height: 2.5em;
+		width: 15.7em;
+		margin: 0.25em;
+		font-size: 16pt;
+		padding-left: 0.5em;
+		color: rgb(150, 150, 150);
 	}
 
 	img {
@@ -27,6 +37,10 @@
 		left: 50%;
 		margin-top: -50px;
 		margin-left: -50px;
+	}
+
+	:focus	{
+		outline: none;
 	}
 
 /*NAVIGATION*/
@@ -39,8 +53,8 @@
 		left: 0%;
 		top:0%;
 		z-index: 2;
-		border-right: 1px solid rgba(150, 150, 150, 0.75);
-		box-shadow: 0.5em 0px 6em rgba(0, 0, 0, 0.75);
+		/*border-right: 1px solid rgba(150, 150, 150, 0.75);
+		box-shadow: 0.5em 0px 6em rgba(0, 0, 0, 0.75);*/
 	}
 			
 	.menu_bar	{
@@ -69,6 +83,13 @@
 
 	#back 	{display: none;}
 
+	#bendy	{
+		position: absolute;
+		left: 15em;
+		top: 50%;
+		margin-top: -250px;
+	}
+
 /*SCREENS*/
 
 	.screen	{
@@ -76,7 +97,6 @@
 		position: absolute;
 		top: 0;
 		text-align: center;
-		background-color: #fff;
 	}
 
 	#screen_primary		{width: 200%; top: 0%;}
@@ -120,7 +140,7 @@
 		color: rgb(150, 150, 150);
 	}
 
-	.btn:hover	{
+	.btn:hover, .btn:focus	{
 		color: #eee; 
 		cursor: default;
 		background-color: rgb(19, 162, 204);
@@ -135,7 +155,8 @@
 		width: 15em;
 	}
 
-	.next_position, .submit	{right: -4.1em;}
+	.next_position,
+	.submit	{right: -4.1em;}
 	.back_position			{left: 0em;}
 
 	/*PRIMARY SCREEN*/
@@ -188,6 +209,11 @@
 		.yellow:hover	{background-color: 	rgb(235, 187, 52);}
 */
 	/*POST SCREEN*/
+		.error	{
+			background-color: rgb(245, 100, 64);
+			border: 1px solid rgb(245, 100, 64);
+			color: #fff;
+		}
 	/*FIND SCREEN*/
 		.option	{display: none;}
 	/*MENU SCREEN*/

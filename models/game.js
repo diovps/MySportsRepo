@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var GameSchema = new Schema({
 	type: String,
+	numslots: Number,
 	numplayers: String,
 	address: String,
 	time: String,

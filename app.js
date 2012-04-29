@@ -11,6 +11,8 @@ var app = module.exports = express.createServer();
 var mongoose = require('mongoose');
 var Game = require('./models/game.js');
 
+ObjectIds = new Array();
+
 if(process.env.VCAP_SERVICES){
   var env = JSON.parse(process.env.VCAP_SERVICES);
   var mongo = env['mongodb-1.8'][0]['credentials'];
@@ -57,6 +59,7 @@ app.configure(function(){
   
 });
 
+
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
@@ -71,14 +74,10 @@ app.post('/',function(req,res){
 	console.log("Time: " + req.body.game["time"]);
 	console.log("Address: " + req.body.game["address"]);
 	
-	var u = new Game({type : req.body.game['type'], numplayers: req.body.game["numplayers"],time : req.body.game["time"], address : req.body.game["address"]});
+	var u = new Game({type : req.body.game['type'],numslots: 0,numplayers: req.body.game["numplayers"],time : req.body.game["time"], address : req.body.game["address"]});
 	
 	u.save(function(err) {
 	
-	});
-
-	Game.find({"type" : "soccer"},function(err,result){
-		console.log(result[0]["type"]);
 	});
 	res.redirect('back');
 });
